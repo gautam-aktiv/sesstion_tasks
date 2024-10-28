@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_sale_purchase_wizard_form" model="ir.ui.view">
+            <field name="name">Sale Purchase Wizard</field>
+            <field name="model">sale.purchase.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <group>
+                            <field name="partner_id"/>
+                        </group>
+                        <group>
+                            <field name="delivery_date" invisible="not context.get('default_delivery_date', True)"/>
+                            <field name="is_dropship"/>
+                            <field name="sale_order_id"/>
+                            <field name="purchase_order_id"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Order Lines">
+                            <field name="product_line_ids">
+                                <tree editable="bottom">
+                                    <field name="product_id" required="1"/>
+                                    <field name="qty" required="1"/>
+                                    <field name="price_unit" required="1"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Note">
+                            <field name="note"/>
+                        </page>
+                    </notebook>
+                    <footer>
+                        <button string="Confirm" name="action_confirm_from_wizard" type="object" default_focus="1" class="btn-primary" data-hotkey="q"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel" data-hotkey="x"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_sale_purchase_wizard" model="ir.actions.act_window">
+            <field name="name">Sale Purchase Wizard</field>
+            <field name="res_model">sale.purchase.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+    </data>
+</odoo>
