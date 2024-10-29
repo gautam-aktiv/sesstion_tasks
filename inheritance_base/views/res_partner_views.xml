@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_partner_form_inherit_inheritance_base" model="ir.ui.view">
+            <field name="name">res.partner.form.inheritance.base</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//sheet" position="before">
+                    <header>
+                        <button name="base_method" type="object"
+                                string="Inheritance" class="btn-primary"/>
+                    </header>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
