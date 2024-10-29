@@ -1,0 +1,26 @@
+
+    ==> odoo inheritance work on method resolution order(MRO).
+        so its follow dependency hierarchy.
+
+    case 1 (base on dependancy):
+        we have 4 modules
+        1.inheritace_base
+        2.inheritace_module_a (Dependes on inheritace_base)
+        3.inheritace_module_b (Dependes on inheritace_module_a)
+        4.inheritace_module_c (Dependes on inheritace_module_b)
+
+        so here its follow hierarchy like :
+            inheritace_module_c > inheritace_module_B > inheritace_module_A > inheritace_base
+
+    case 2 (all dependancy on base) :
+
+        we have 4 modules
+        1.inheritace_base
+        2.inheritace_module_a (Dependes on inheritace_base)
+        3.inheritace_module_b (Dependes on inheritace_base)
+        4.inheritace_module_c (Dependes on inheritace_base)
+
+        so here its follow installation hierarchy like :
+            3ed install > 2nd install > 1st install
+            inheritace_module_c > inheritace_module_B > inheritace_module_A > inheritace_base
+            (starting from last to first installation hierarchy)
