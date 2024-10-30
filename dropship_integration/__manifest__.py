@@ -4,8 +4,11 @@
     'version': '17.0.1.0.0',
     'category': '',
     'summary': """
+        Dropshiping Integration with Sale and Purchase.
     """,
     'description': """
+        a custom module allow to update sale or purchase order before confirm,
+        also inform in any product available with dropship.
     """,
     'website': "http://www.aktivsoftware.com",
     'author': "Aktiv Software",

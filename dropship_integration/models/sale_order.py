@@ -10,6 +10,7 @@ class SaleOrder(models.Model):
     def action_sale_purchase_wizard(self):
         """
             a button action will open wizard with default values that we set
+            in context for related sale order.
         """
 
         context = {

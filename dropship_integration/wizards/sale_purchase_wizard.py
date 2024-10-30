@@ -10,7 +10,6 @@ class SalePurchaseWizard(models.TransientModel):
     product_line_ids = fields.One2many(
         'product.line.wizard', 'sale_purchase_wizard_id', string='Product'
     )
-
     note = fields.Html(string='Note')
     delivery_date = fields.Datetime(string='Delivery Date')
     is_dropship = fields.Boolean(
@@ -38,6 +37,7 @@ class SalePurchaseWizard(models.TransientModel):
     def action_confirm_from_wizard(self):
         """
             a button method will update details from wizard for specific order
+            lines and confirm it.
         """
         so_id = self.sale_order_id
         po_id = self.purchase_order_id
