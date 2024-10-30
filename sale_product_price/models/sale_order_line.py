@@ -10,8 +10,9 @@ class SaleOrderLine(models.Model):
     @api.onchange('product_template_id')
     def _onchange_product_id_set_pricelist(self):
         """
-        Automatically selects the pricelist with the lowest price for
-        the selected product.
+        By changing product, onchange method will search for recodes with
+        prior data from related sale oder and suggest lowest price pricelist from
+        suggested pricelist for the selected product.
         """
         if not self.product_template_id or not self.order_id:
             return
