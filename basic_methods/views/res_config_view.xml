@@ -10,7 +10,10 @@
                 <xpath expr="//form//app//block[@name='users_setting_container']" position="after">
                     <block title="Employee">
                         <setting id="emp_id" title="Employee">
-                            <field name="employee_id"/>
+                            <field name="employee_id" class="w-auto ps-6 fw-bold"/>
+                        </setting>
+                        <setting id="emp_id" title="Employee">
+                            <field name="employee_id" class="w-auto ps-6 fw-bold"/>
                         </setting>
                     </block>
                 </xpath>

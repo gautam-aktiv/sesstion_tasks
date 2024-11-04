@@ -13,10 +13,11 @@
     'website': "http://www.aktivsoftware.com",
     'author': "Aktiv Software",
     'depends': [
-        'hr'
+        'hr_timesheet'
     ],
     'data': [
-        'views/res_config_view.xml'
+        'views/res_config_view.xml',
+        'views/hr_employee_view.xml'
     ],
     'license': 'LGPL-3',
     'installable': True,
