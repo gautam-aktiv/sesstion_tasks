@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 from odoo import api, fields, models
 
 
@@ -7,7 +6,8 @@ class Pricelist(models.Model):
     _inherit = "product.pricelist"
 
     customer_id = fields.Many2one('res.partner', 'Customer')
-    start_from = fields.Date('From Date', required=True, default=fields.Date.today())
+    start_from = fields.Date('From Date', required=True,
+                             default=fields.Date.today())
     end_to = fields.Date('To Date')
 
     @api.model

@@ -10,6 +10,21 @@ class SaleOrder(models.Model):
     @api.onchange('partner_id')
     def _onchange_partner_id(self):
         self.pricelist_id = False
+        pricelist = self.env['product.pricelist'].search([
+            ('start_from', '<=', self.date_order),
+            '|', ('end_to', '>=', self.date_order),
+            ('end_to', '=', False)
+        ])
+        if self.partner_id:
+            partner_pricelist = pricelist.filtered(
+                lambda p: p.customer_id == self.partner_id
+            )
+            if partner_pricelist:
+                self.pricelist_id = partner_pricelist[0]
+            else:
+                self.pricelist_id = pricelist[0]
+        else:
+            self.pricelist_id = pricelist[0]
         self._recompute_prices()
 
     def action_update_prices(self):

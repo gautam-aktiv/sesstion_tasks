@@ -7,15 +7,11 @@ class SaleOrderLine(models.Model):
 
     pricelist_id = fields.Many2one('product.pricelist', 'Pricelist')
 
-    @api.onchange('product_template_id')
-    def _onchange_product_id_set_pricelist(self):
-        """
-        By changing product, onchange method will search for recodes with
-        prior data from related sale oder and suggest lowest price pricelist from
-        suggested pricelist for the selected product.
-        """
-        if not self.product_template_id or not self.order_id:
-            return
+    @api.depends('product_id', 'product_uom',
+                 'product_uom_qty', 'pricelist_id')
+    def _compute_price_unit(self):
+
+        super()._compute_price_unit()
 
         pricelists = self.env['product.pricelist'].with_context({
             'customer_id': self.order_id.partner_id.id,
@@ -40,3 +36,14 @@ class SaleOrderLine(models.Model):
             self.pricelist_id = lowest_pricelist_id
         else:
             self.pricelist_id = self.order_id.pricelist_id.id
+
+    @api.onchange('pricelist_id', 'product_id', 'product_uom_qty')
+    def _onchange_pricelist_id(self):
+        """Update price based on the selected pricelist."""
+        if self.pricelist_id and self.product_id:
+            new_price_unit = self.pricelist_id._get_product_price(
+                self.product_id,
+                quantity=self.product_uom_qty,
+                partner=self.order_id.partner_id
+            )
+            self.price_unit = new_price_unit

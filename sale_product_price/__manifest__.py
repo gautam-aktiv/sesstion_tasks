@@ -1,12 +1,11 @@
 # -*- coding: utf-8 -*-
-#
 {
     'name': 'Product Pricelist Suggestion',
     'version': '17.0.1.0.0',
     'category': 'Sales/Sales',
     'summary': """
         a custom module suggest lowest price pricelist for selected product in
-        sale order line. 
+        sale order line.
     """,
     'description': """
         Using a pricelist, a custom module suggests the best price pricelist
