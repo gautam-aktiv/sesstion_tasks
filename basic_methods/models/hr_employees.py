@@ -18,7 +18,14 @@ class Employee(models.Model):
         for employee in self:
             employee.display_name =\
                 f"{employee.name} - {employee.work_email or ''}"
+    @api.model
+    def _name_search(self, name='', args=None, operator='ilike', limit=100, order=None, name_get_uid=None):
+        args = args or []
+        args += ['|', '|', ('name', operator, name), ('email', operator, name), ('phone', operator, name)]
 
+        return self._search(args, limit=limit, access_rights_uid=name_get_uid)  
+
+    @api.model
     def _compute_timesheet_count(self):
         for employee in self:
             employee.timesheet_count =\
