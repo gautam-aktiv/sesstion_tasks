@@ -16,8 +16,24 @@ class Employee(models.Model):
     @api.depends('name', 'work_email')
     def _compute_display_name(self):
         for employee in self:
-            employee.display_name = f"{employee.name} - {employee.work_email or ''}"
+            employee.display_name =\
+                f"{employee.name} - {employee.work_email or ''}"
 
     def _compute_timesheet_count(self):
         for employee in self:
-            employee.timesheet_count = self.env['account.analytic.line'].search_count([('employee_id', '=', employee.id)])
+            employee.timesheet_count =\
+                self.env['account.analytic.line'].search_count([
+                    ('employee_id', '=', employee.id)
+                ])
+
+    def action_my_timesheet(self):
+        return {
+            'name': 'My Timesheets',
+            'type': 'ir.actions.act_window',
+            'res_model': 'account.analytic.line',
+            'view_mode': 'tree,form',
+            'target': 'current',
+            'domain': [('employee_id', '=', self.id)],
+            'context': {
+            },
+        }

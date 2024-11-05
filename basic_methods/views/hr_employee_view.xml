@@ -3,11 +3,15 @@
         <record id="hr_employee_view_form_inherit_basic_methods" model="ir.ui.view">
             <field name="name">hr.employee.form.basic.methods</field>
             <field name="model">hr.employee</field>
-            <field name="inherit_id" ref="hr_timesheet.hr_employee_view_form_inherit_timesheet"/>
-            <!--            <field name="priority" eval="40"/>-->
+            <field name="inherit_id" ref="hr.view_employee_form"/>
             <field name="arch" type="xml">
-                <xpath expr="//button[@name='action_timesheet_from_employee']//div" position="inside">
-                    <field name="timesheet_count"/>
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button icon="fa-calendar" class="oe_stat_button" type="object" name="action_my_timesheet">
+                        <div class="o_field_widget o_stat_info">
+                            <span class="o_stat_text">My Timesheets</span>
+                            <field name="timesheet_count"/>
+                        </div>
+                    </button>
                 </xpath>
             </field>
         </record>
