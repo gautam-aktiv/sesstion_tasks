@@ -6,13 +6,13 @@
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
             <xpath expr="//button[@name='action_confirm']" position="attributes">
-                <attribute name="name">action_sale_purchase_wizard</attribute>
+                <attribute name="context">{'validate_analytic': True, 'open_wizard': True}</attribute>
             </xpath>
-            <xpath expr="//button[@name='action_confirm']" position="attributes">
-                <attribute name="name">action_sale_purchase_wizard</attribute>
+            <xpath expr="//button[@name='action_confirm'][2]" position="attributes">
+                <attribute name="context">{'validate_analytic': True, 'open_wizard': True}</attribute>
             </xpath>
             <xpath expr="//field[@name='payment_term_id']" position="after">
-                <field name="purchase_order_id" readonly="1"/>
+                <field name="purchase_order_id" readonly="1" invisible="not purchase_order_id"/>
             </xpath>
         </field>
     </record>
