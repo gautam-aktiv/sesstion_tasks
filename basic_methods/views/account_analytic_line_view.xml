@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="hr_timesheet_line_search" model="ir.ui.view">
+            <field name="name">account.analytic.line.search</field>
+            <field name="model">account.analytic.line</field>
+            <field name="inherit_id" ref="analytic.view_account_analytic_line_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='groupby']" position="inside">
+                    <filter string="Q1" name='category' domian="[()]"/>
+
+                </xpath>
+            </field>
+    </data>
+</odoo>

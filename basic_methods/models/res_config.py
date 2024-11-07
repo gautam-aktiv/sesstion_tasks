@@ -1,9 +1,20 @@
+# -*- coding: utf-8 -*-
 from odoo import models, fields, api
 
 class ResConfigSettings(models.TransientModel):
     _inherit = 'res.config.settings'
 
     employee_id = fields.Many2one('hr.employee', string="Employee")
+    employee_name_only = fields.Char(
+        string="Employee Name",
+        compute='_compute_employee_name_only',
+        store=True
+    )
+
+    @api.depends('employee_id')
+    def _compute_employee_name_only(self):
+        for record in self:
+            record.employee_name_only = record.employee_id.name
 
     @api.model
     def get_values(self):

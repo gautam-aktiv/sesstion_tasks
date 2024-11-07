@@ -13,7 +13,7 @@
                             <field name="employee_id" class="w-auto ps-6 fw-bold"/>
                         </setting>
                         <setting id="emp_id" title="Employee">
-                            <field name="employee_id" class="w-auto ps-6 fw-bold"/>
+                            <field name="employee_name_only"/>
                         </setting>
                     </block>
                 </xpath>
