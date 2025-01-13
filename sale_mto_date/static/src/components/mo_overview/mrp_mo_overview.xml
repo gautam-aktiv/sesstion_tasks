@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="sale_mto_date.MoOverview" t-inherit="mrp.MoOverview" t-inherit-mode="extension">
+        <xpath expr="//th[hasclass('text-start')]" position="after">
+            <th name="th_mrp_bom_p_i">MTO Date</th>
+        </xpath>
+        <xpath expr="//tfoot/tr/td" position="before">
+            <td/>
+        </xpath>
+    </t>
+    <t t-name="sale_mto_date.MoOverviewLine" t-inherit="mrp.MoOverviewLine" t-inherit-mode="extension">
+        <xpath expr="//td[hasclass('text-start')]" position="after">
+            <td>
+               <t t-out="data.mto_date"/>
+            </td>
+        </xpath>
+    </t>
+
+    <t t-name="sale_mto_date.MoOverviewOperationsBlock" t-inherit="mrp.MoOverviewOperationsBlock" t-inherit-mode="extension">
+        <xpath expr="//tr/td" position="after">
+            <td/>
+        </xpath>
+    </t>
+</templates>
